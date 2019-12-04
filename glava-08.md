@@ -260,11 +260,12 @@ _Таблица 8-5. Необязательные аргументы VoiceMail\(
 
 ```text
 exten => 102,1,Dial(${UserB_DeskPhone},10)
-same => n,Playback(vm-nobodyavail)
+same => n,Playback(vm-nobodyavail)g
 same => n,Hangup()
 ```
 
-Вместо почтового ящика мы просто проигрывали приветствие, которое больше ничего не делало.
+Вместо почтового ящика мы просто проигрывали приветствие, которое больше ничего не делало. Давайте поменяем диалплан, чтобы  звонок  приходил на действительный почтовый ящик.
+
 We faked a voicemail by playing a prompt that didn’t actually do anything. Let’s change that so the call goes to an actual mailbox instead. For now we’ll just let voicemail play a generic greeting that the caller will hear. Remember, the second argument to the Dial\(\) application is a timeout. If the call is not answered before the timeout expires, the call is sent to the next priority. We’ve got a 10-second timeout, and a new priority to send the caller to voicemail after the dial timeout:
 
 exten =&gt; 102,1,Dial\(${UserB\_DeskPhone},10\)
